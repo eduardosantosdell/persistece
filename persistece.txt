@@ -1,0 +1,20 @@
+Particionar pendriver
+MinitoolsPARTITION
+File system ext4 e partition label persistece
+
+Vá para a opção “Live USB Persistence”, logo vai aparecer um bocado de texto e depois o sistema vai iniciar.
+Certifique-se de que no Desktop há uma unidade chamada “Persistence” que é a partição “sim-alocada” que criamos agora pouco.
+
+Abra um terminal e digite os seguintes comandos.
+fdisk -l
+Lembram que seu Pendrive tinha as partições FAT32 e uma Ext4 (Linux)?
+Procure saber qual é o seu Device Boot.
+Geralmente elas são /dev/sdb2 ou /dev/sdc2, apenas procure saber qual é.
+mkdir -p /mnt/UUI
+Essa UUI, é o nome do nosso pendrive que usamos no Rufus, caso tenha colocado outro nome, mude esta opção. No meu caso, utilizei UUI
+mount /dev/sdb2 /mnt/UUI
+Após o “mount” coloquei meu Device Boot Ext4 (Linux), como eu disse antes, procure saber qual é o seu.
+echo “/ union” > /mnt/UUI/persistence.conf
+umount /dev/sdb2 && reboot
+Usando este último comando, seu computador irá reiniciar. Sempre que quiser usar o Kali, use a tecla de BOOT com o pendrive conectado e escolha a unidade.
+Logo vamos nos deparar com uma tela que vimos antes
